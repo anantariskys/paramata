@@ -12,14 +12,25 @@ class ProductController extends Controller
     public function index()
     {
         $products = Products::with('category')->get();
-        return view('products.products', compact('products'));
+        $categories = Category::all();
+        
+        return view('product', compact('products', 'categories'));
+    }
+    public function category($id)
+    {
+        $products = Products::with('category')->where('category_id', $id)-> get();
+        $categories = Category::all();
+        $category = Category::findOrFail($id);
+        return view('product.category', compact('products', 'categories', 'category'));
     }
 
 
     public function show($id)
     {
         $product = Products::findOrFail($id);
-        return view('products.show', compact('product'));
+        $categories = Category::all();
+        $relatedProducts = Products::where('category_id', $product->category_id)->get();
+        return view('product.show', compact('product', 'categories', 'relatedProducts'));
     }
     public function create()
     {
@@ -52,6 +63,8 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product added successfully!');
     }
+
+
 
     public function edit($id)
     {
@@ -98,6 +111,12 @@ class ProductController extends Controller
     public function getProducts()
     {
         return response()->json(Products::with('category')->get());
+    }
+
+    public function getProductsByCategory($category)
+    {
+        $products = Products::where('category_id', $category)->get();
+        return view('products.category', compact('products'));
     }
 
 

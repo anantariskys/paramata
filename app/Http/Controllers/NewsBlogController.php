@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
@@ -11,8 +12,9 @@ class NewsBlogController extends Controller
     public function index()
     {
         $newsblogs = NewsBlog::all(); 
+        $categories = Category::all();
 
-        return view('newsblog.index', compact('newsblogs'));
+        return view('about.news', compact('newsblogs', 'categories'));
     }
 
     public function show($id)

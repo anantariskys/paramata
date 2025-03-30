@@ -1,0 +1,1 @@
+<x-hero-layout title="OUR COMPANY"/>

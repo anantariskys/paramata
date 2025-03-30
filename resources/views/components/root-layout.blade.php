@@ -1,3 +1,5 @@
+@props(['categories'])
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +10,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-montserrat">
-    <x-navbar/>
+    <x-navbar :categories="$categories"/>
     {{ $slot }}
     <x-footer/>
 </body>

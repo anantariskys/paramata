@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -9,7 +11,14 @@ class HomeController extends Controller
     /*
      * Dashboard Pages Routs
      */
+
     public function index(Request $request)
+    {
+        $products = Products::with('category')->get();
+        $categories = Category::all();
+        return view('home', compact('products', 'categories'));
+    }
+    public function chart(Request $request)
     {
         $assets = ['chart', 'animation'];
         return view('dashboards.dashboard', compact('assets'));

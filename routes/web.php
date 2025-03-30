@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsBlogController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +18,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/about', function () {
+    $categories = Category::all();  
+    return view('about', compact('categories'));
 });
+
+Route::get('/about/our-company', function () {
+    $categories = Category::all();  
+    return view('about.company', compact('categories'));
+});
+Route::get('/about/our-customers', function () {
+    $categories = Category::all();  
+    return view('about.customers', compact('categories'));
+});
+Route::get('/about/news', [NewsBlogController::class, 'index'])->name('news.index');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/category/{category}', [ProductController::class, 'category'])->name('products.category');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+
+Route::get('/special-offers', function () {
+    $categories = Category::all();  
+    return view('special-offers', compact('categories'));
+});
+Route::get('/contacts', function () {
+    $categories = Category::all();  
+    return view('contacts', compact('categories'));
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,4 +59,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

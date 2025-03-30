@@ -44,8 +44,8 @@
             </div>
 
             <!-- Map Section -->
-            <div class="col-span-1 lg:col-span-2 min-h-[300px] bg-gray-100 rounded-lg">
-                {{-- Google Maps integration goes here --}}
+            <div class="col-span-1 lg:col-span-2 w-full md:min-h-[300px] aspect-square bg-gray-100 rounded-lg">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.335816307873!2d106.70574007573134!3d-6.219371660915986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f9f46cb8909d%3A0xcc3c7dea1e906364!2sParamata%20Baraya%20International.%20PT!5e0!3m2!1sid!2sid!4v1743325911918!5m2!1sid!2sid" class="w-full h-full" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
 
