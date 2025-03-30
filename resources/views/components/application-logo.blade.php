@@ -1,0 +1,1 @@
+<img src="{{ asset('images/logo.svg') }}" draggable="false" alt="Paranama" {{ $attributes->merge(['class' => '']) }}>
