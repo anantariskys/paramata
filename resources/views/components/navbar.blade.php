@@ -31,7 +31,7 @@
                         
                         <div x-show="open" 
                              x-transition
-                             class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                             class="absolute left-0 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
                              style="display: none;">
                             <div class="py-1">
                                 <a href="/about/our-company" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center justify-between">
@@ -68,7 +68,7 @@
                         
                         <div x-show="open" 
                              x-transition
-                             class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                             class="absolute left-0 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
                              style="display: none;">
                             <div class="py-1">
                                 @foreach ($categories as $category)
@@ -91,9 +91,18 @@
                     <x-nav-link href="/contacts" :active="request()->is('contacts')">
                         {{ __('Contacts') }}
                     </x-nav-link>
+
+                    <a href="#" class="px-4 py-2 border border-primary rounded-full text-sm font-semibold text-primary flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        021-7306424
+                    </a>
                     
-                    <a href="{{ route('login') }}" class="inline-flex items-center px-1 pt-1 border-transparent text-sm font-medium leading-5 text-gray-500 gap-2 focus:outline-none focus:text-gray-700 transition duration-150 ease-in-out">
-                        <div class="w-10 h-10 bg-red-500 rounded-full"></div>
+                    <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1  border-transparent text-sm font-medium leading-5 text-gray-500 gap-2 focus:outline-none focus:text-gray-700 transition duration-150 ease-in-out">
+                        <div class="w-10 h-10 rounded-full">
+                            <img src="{{ asset('images/avatar.png') }}" alt="User" class="size-full object-cover">
+                        </div>
                         {{ __('Log in') }}  
                     </a>
                 </div>
@@ -119,14 +128,20 @@
             </x-responsive-nav-link>
             
             <div x-data="{ open: false }" class="relative">
-                <x-responsive-nav-link href="#" @click="open = !open" :active="request()->is('about*')">
-                    {{ __('About') }}
+                <x-responsive-nav-link href="#" @click="open = !open" :active="request()->is('about')" class="flex items-center justify-between">
+                    <span>{{ __('About') }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
                 </x-responsive-nav-link>
                 
                 <div x-show="open" 
                      x-transition
-                     class="pl-4 space-y-1"
+                     class="pl-4 space-y-1 bg-gray-50"
                      style="display: none;">
+                    <x-responsive-nav-link href="/about" :active="request()->is('about')">
+                        {{ __('About') }}
+                    </x-responsive-nav-link>
                     <x-responsive-nav-link href="/about/our-company" :active="request()->is('about/our-company')">
                         {{ __('Our Company') }}
                     </x-responsive-nav-link>
@@ -140,17 +155,23 @@
             </div>
             
             <div x-data="{ open: false }" class="relative">
-                <x-responsive-nav-link href="#" @click="open = !open" :active="request()->is('products*')">
-                    {{ __('Products') }}
+                <x-responsive-nav-link href="#" @click="open = !open" :active="request()->is('products')" class="flex items-center justify-between">
+                    <span>{{ __('Products') }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
                 </x-responsive-nav-link>
                 
                 <div x-show="open" 
-                     x-transition
-                     class="pl-4 space-y-1"
-                     style="display: none;">
-                    @foreach ($categories as $category)
-                    <x-responsive-nav-link href="/products/category/{{ $category->id }}" :active="request()->is('products/category/{{ $category->id }}')">
-                        {{ __($category->name) }}
+                x-transition
+                class="pl-4 space-y-1 bg-gray-50"
+                style="display: none;">
+                <x-responsive-nav-link href="/products" :active="request()->is('products')">
+                    {{ __('Products') }}
+                </x-responsive-nav-link>
+                @foreach ($categories as $category)
+                    <x-responsive-nav-link href="/products/category/{{ $category->id }}" :active="request()->is('products/category/'.$category->id)">
+                        {{ $category->name }}
                     </x-responsive-nav-link>
                     @endforeach
                 </div>
@@ -163,9 +184,18 @@
             <x-responsive-nav-link href="/contacts" :active="request()->is('contacts')">
                 {{ __('Contacts') }}
             </x-responsive-nav-link>
-
             <div class="px-4 py-2">
-                <a href="{{ route('login') }}" class="inline-flex items-center text-sm font-medium text-gray-500 gap-2 focus:outline-none focus:text-gray-700 transition duration-150 ease-in-out">
+                <button class="px-4 py-2 border border-primary rounded-2xl text-primary flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    021-7306424
+                </button>
+            </div>
+            
+
+            <div class="px-4 py-2 border-t border-gray-200">
+                <a href="{{ route('dashboard') }}" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 gap-2 focus:outline-none transition duration-150 ease-in-out">
                     <div class="w-8 h-8 bg-red-500 rounded-full"></div>
                     {{ __('Log in') }}
                 </a>
