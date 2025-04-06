@@ -25,6 +25,10 @@
                         <textarea name="message" id="message" placeholder="Message" rows="4" class="w-full h-32 rounded-md border-2 border-primary p-2 resize-none focus:border-primary focus:ring-1 focus:ring-primary text-sm md:text-base"></textarea>
                     </div>
                 </form>
+                <div class="flex justify-center">
+                    <button class="bg-primary text-white px-4 py-2 min-w-40 min-h-12 rounded-md">Send</button>
+
+                </div>
             </div>
         </div>
     </section>
@@ -61,6 +65,7 @@
                     </div>
                 </div>
             </div>
+          
         </div>
     </section>
 </x-root-layout>
