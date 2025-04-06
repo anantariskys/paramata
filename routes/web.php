@@ -50,8 +50,9 @@ Route::get('/contacts', function () {
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    $categories = Category::all();
+    return view('dashboards.dashboard', compact('categories'));
+})->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
