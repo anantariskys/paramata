@@ -92,81 +92,15 @@
         <div class="container grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-4">
                 <h2 class="text-3xl font-bold text-primary">Features & Benefits:</h2>
-                <div class="space-y-4">
-                    <p class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6 text-primary">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Optional integrated wireless
-                    </p>
-                    <p class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Five local and remote alarms, including man down
-                    </p>
-                    <p class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Dust-tight and waterproof (IP65-rated)
-                    </p>
-                    <p class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Onboard gas libraries include 190 VOCs and 55 combustible gases
-                    </p>
-                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quae minus molestiae aut illo consequuntur et nesciunt accusamus voluptatibus nam natus, cum delectus sed deserunt magnam iure dolore doloribus? Ab!</p>
             </div>
             <div class="space-y-4">
                 <h2 class="text-3xl font-bold text-primary">Application:</h2>
-                <div class="space-y-4">
-                    <p class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Clandestine Labs
-                    </p>
-                    <p class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Environmental Cleanups/ Remediation
-                    </p>
-                    <p class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Plant Shutdown & Turn-Around
-                    </p>
-                    <p class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Emergency Response
-                    </p>
-                </div>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, quae accusantium modi quam pariatur sint atque minima dolorum nesciunt repellendus velit culpa fugiat illo error laudantium voluptatem expedita harum delectus alias voluptas, vitae quis corporis sunt. Qui enim alias aliquid earum. Amet.</p>
             </div>
         </div>
     </section>
-    <x-section-layout :title="'Related Products'" :isCenter="true">
+    <x-section-layout :title="'Special Offers'" :isCenter="true">
         @if (count($relatedProducts) > 0)
         <div x-data="{ currentSlide: 0 }" class="relative">
             <div class="overflow-hidden">
@@ -184,9 +118,11 @@
                     <div class="hidden md:block w-full flex-shrink-0">
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                             @foreach($chunk as $index => $product)
-                            <x-product-card 
+                            <x-product-card2 
                                 :image="$product->picture" 
                                 :title="$product->productname"
+                                :category="$product->category->name"
+                                :id="$product->id"
                                 :class="$index === 1 ? 'sm:-translate-y-4 md:-translate-y-8' : ''"
                             />
                             @endforeach

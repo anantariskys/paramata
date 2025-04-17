@@ -1,1 +1,1 @@
-<x-hero-layout title="ABOUT US"/>
+<x-hero-layout title="ABOUT"/>

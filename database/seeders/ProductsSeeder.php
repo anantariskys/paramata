@@ -33,32 +33,17 @@ class ProductsSeeder extends Seeder
         }
         
         // Generate 9 produk
-        for ($i = 1; $i <= 9; $i++) {
-            $imageUrl = "https://picsum.photos/800/600";
-            $imageName = "product{$i}.jpg";
-            
-            try {
-                // Download gambar menggunakan curl
-                $ch = curl_init($imageUrl);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $imageData = curl_exec($ch);
-                curl_close($ch);
+        for ($i = 1; $i <= 20; $i++) {
 
-                if ($imageData) {
-                    // Simpan gambar menggunakan Storage facade
-                    Storage::disk('public')->put("products/{$imageName}", $imageData);
-
-                    // Buat produk
-                    Products::create([
-                        'productname' => $faker->unique()->words(3, true),
-                        'description' => $faker->paragraph(),
-                        'picture' => "products/{$imageName}",
-                        'category_id' => $faker->numberBetween(1, 3),
-                    ]);
-                }
-            } catch (\Exception $e) {
-                echo "Error downloading image {$i}: " . $e->getMessage() . "\n";
-            }
+             // Buat produk
+             Products::create([
+                'productname' => $faker->unique()->words(3, true),
+                'description' => $faker->paragraph(),
+                'picture' => "https://picsum.photos/800/600",
+                'category_id' => $faker->numberBetween(1, 3),
+                'subcategory_id' => $faker->numberBetween(1, 3),
+            ]);
+         
         }
     }
 }

@@ -37,7 +37,7 @@
                 <div class="hidden md:block w-full flex-shrink-0">
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                         <x-news-card description="Product 1" publishedAt="2025-03-30" image="{{ asset('images/product1.png') }}" title="Product 1" />
-                        <x-news-card description="Product 2" class="sm:-translate-y-4 md:-translate-y-8" publishedAt="2025-03-30" image="{{ asset('images/product2.png') }}" title="Product 2" />
+                        <x-news-card description="Product 2" class="" publishedAt="2025-03-30" image="{{ asset('images/product2.png') }}" title="Product 2" />
                         <x-news-card description="Product 3" publishedAt="2025-03-30" image="{{ asset('images/product3.png') }}" title="Product 3" />
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="hidden md:block w-full flex-shrink-0">
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                         <x-news-card description="Product 4" publishedAt="2025-03-30" image="{{ asset('images/product4.png') }}" title="Product 4" />
-                        <x-news-card description="Product 5" class="sm:-translate-y-4 md:-translate-y-8" publishedAt="2025-03-30" image="{{ asset('images/product5.png') }}" title="Product 5" />
+                        <x-news-card description="Product 5" class="" publishedAt="2025-03-30" image="{{ asset('images/product5.png') }}" title="Product 5" />
                         <x-news-card description="Product 6" publishedAt="2025-03-30" image="{{ asset('images/product6.png') }}" title="Product 6" />
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="hidden md:block w-full flex-shrink-0">
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                         <x-news-card description="Product 7" publishedAt="2025-03-30" image="{{ asset('images/product7.png') }}" title="Product 7" />
-                        <x-news-card description="Product 8" class="sm:-translate-y-4 md:-translate-y-8" publishedAt="2025-03-30" image="{{ asset('images/product8.png') }}" title="Product 8" />
+                        <x-news-card description="Product 8" class="" publishedAt="2025-03-30" image="{{ asset('images/product8.png') }}" title="Product 8" />
                         <x-news-card description="Product 9" publishedAt="2025-03-30" image="{{ asset('images/product9.png') }}" title="Product 9" />
                     </div>
                 </div>

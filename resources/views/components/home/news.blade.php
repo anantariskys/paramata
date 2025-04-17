@@ -1,62 +1,105 @@
 <x-section-layout title="News" :isCenter=true x-data="{ currentNewsSlide: 0 }">
+    @php
+        $news = [
+            [
+                'id' => 1,
+                'title' => 'Introducing New Gas Detection Technology',
+                'description' => 'Revolutionary advancements in gas detection systems that provide enhanced safety and reliability.',
+                'image' => 'images/news/news1.jpg',
+                'published_at' => '2024-03-15'
+            ],
+            [
+                'id' => 2,
+                'title' => 'Safety Standards Update 2024',
+                'description' => 'Latest updates on industrial safety standards and compliance requirements for gas detection.',
+                'image' => 'images/news/news2.jpg', 
+                'published_at' => '2024-03-10'
+            ],
+            [
+                'id' => 3,
+                'title' => 'Wireless Monitoring Solutions',
+                'description' => 'New wireless gas detection systems for improved workplace safety monitoring.',
+                'image' => 'images/news/news3.jpg',
+                'published_at' => '2024-03-05'
+            ],
+            [
+                'id' => 4,
+                'title' => 'Industry 4.0 Integration',
+                'description' => 'How smart gas detection systems are adapting to Industry 4.0 requirements.',
+                'image' => 'images/news/news4.jpg',
+                'published_at' => '2024-03-01'
+            ],
+            [
+                'id' => 5,
+                'title' => 'Environmental Compliance',
+                'description' => 'Meeting environmental regulations with next-generation gas detection equipment.',
+                'image' => 'images/news/news5.jpg',
+                'published_at' => '2024-02-28'
+            ],
+            [
+                'id' => 6,
+                'title' => 'Product Training Updates',
+                'description' => 'New training programs for gas detection equipment operators and safety personnel.',
+                'image' => 'images/news/news6.jpg',
+                'published_at' => '2024-02-25'
+            ],
+            [
+                'id' => 7,
+                'title' => 'Market Trends 2024',
+                'description' => 'Analysis of current trends in the gas detection industry and future projections.',
+                'image' => 'images/news/news7.jpg',
+                'published_at' => '2024-02-20'
+            ],
+            [
+                'id' => 8,
+                'title' => 'Maintenance Best Practices',
+                'description' => 'Updated guidelines for maintaining gas detection equipment performance.',
+                'image' => 'images/news/news8.jpg',
+                'published_at' => '2024-02-15'
+            ],
+            [
+                'id' => 9,
+                'title' => 'Customer Success Stories',
+                'description' => 'Real-world applications and success stories from our clients worldwide.',
+                'image' => 'images/news/news9.jpg',
+                'published_at' => '2024-02-10'
+            ]
+        ];
+    @endphp
+
     <div x-data="{ currentSlide: 0 }" class="relative">
         <div class="overflow-hidden">
             <div class="flex transition-transform py-8 md:py-12 duration-300 ease-in-out"
                 :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
 
                 <!-- Mobile Slides -->
+                @foreach($news as $item)
                 <div class="w-full md:hidden flex-shrink-0">
-                    <x-news-card description="Product 1" publishedAt="2025-03-30" image="{{ asset('images/product1.png') }}" title="Product 1" />
+                    <x-news-card 
+                        description="{{ $item['description'] }}" 
+                        publishedAt="{{ $item['published_at'] }}" 
+                        image="{{ asset($item['image']) }}" 
+                        title="{{ $item['title'] }}" 
+                        link="{{ route('news.show', $item['id']) }}"
+                    />
                 </div>
-                <div class="w-full md:hidden flex-shrink-0">
-                    <x-news-card description="Product 2" publishedAt="2025-03-30" image="{{ asset('images/product2.png') }}" title="Product 2" />
-                </div>
-                <div class="w-full md:hidden flex-shrink-0">
-                    <x-news-card description="Product 3" publishedAt="2025-03-30" image="{{ asset('images/product3.png') }}" title="Product 3" />
-                </div>
-                <div class="w-full md:hidden flex-shrink-0">
-                    <x-news-card description="Product 4" publishedAt="2025-03-30" image="{{ asset('images/product4.png') }}" title="Product 4" />
-                </div>
-                <div class="w-full md:hidden flex-shrink-0">
-                    <x-news-card description="Product 5" publishedAt="2025-03-30" image="{{ asset('images/product5.png') }}" title="Product 5" />
-                </div>
-                <div class="w-full md:hidden flex-shrink-0">
-                    <x-news-card description="Product 6" publishedAt="2025-03-30" image="{{ asset('images/product6.png') }}" title="Product 6" />
-                </div>
-                <div class="w-full md:hidden flex-shrink-0">
-                    <x-news-card description="Product 7" publishedAt="2025-03-30" image="{{ asset('images/product7.png') }}" title="Product 7" />
-                </div>
-                <div class="w-full md:hidden flex-shrink-0">
-                    <x-news-card description="Product 8" publishedAt="2025-03-30" image="{{ asset('images/product8.png') }}" title="Product 8" />
-                </div>
-                <div class="w-full md:hidden flex-shrink-0">
-                    <x-news-card description="Product 9" publishedAt="2025-03-30" image="{{ asset('images/product9.png') }}" title="Product 9" />
-                </div>
+                @endforeach
 
                 <!-- Desktop Slides -->
+                @for($i = 0; $i < count($news); $i += 3)
                 <div class="hidden md:block w-full flex-shrink-0">
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                        <x-news-card description="Product 1" publishedAt="2025-03-30" image="{{ asset('images/product1.png') }}" title="Product 1" />
-                        <x-news-card description="Product 2" class="sm:-translate-y-4 md:-translate-y-8" publishedAt="2025-03-30" image="{{ asset('images/product2.png') }}" title="Product 2" />
-                        <x-news-card description="Product 3" publishedAt="2025-03-30" image="{{ asset('images/product3.png') }}" title="Product 3" />
+                        @for($j = $i; $j < min($i + 3, count($news)); $j++)
+                        <x-news-card 
+                            description="{{ $news[$j]['description'] }}" 
+                            publishedAt="{{ $news[$j]['published_at'] }}" 
+                            image="{{ asset($news[$j]['image']) }}" 
+                            title="{{ $news[$j]['title'] }}" 
+                        />
+                        @endfor
                     </div>
                 </div>
-
-                <div class="hidden md:block w-full flex-shrink-0">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                        <x-news-card description="Product 4" publishedAt="2025-03-30" image="{{ asset('images/product4.png') }}" title="Product 4" />
-                        <x-news-card description="Product 5" class="sm:-translate-y-4 md:-translate-y-8" publishedAt="2025-03-30" image="{{ asset('images/product5.png') }}" title="Product 5" />
-                        <x-news-card description="Product 6" publishedAt="2025-03-30" image="{{ asset('images/product6.png') }}" title="Product 6" />
-                    </div>
-                </div>
-
-                <div class="hidden md:block w-full flex-shrink-0">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                        <x-news-card description="Product 7" publishedAt="2025-03-30" image="{{ asset('images/product7.png') }}" title="Product 7" />
-                        <x-news-card description="Product 8" class="sm:-translate-y-4 md:-translate-y-8" publishedAt="2025-03-30" image="{{ asset('images/product8.png') }}" title="Product 8" />
-                        <x-news-card description="Product 9" publishedAt="2025-03-30" image="{{ asset('images/product9.png') }}" title="Product 9" />
-                    </div>
-                </div>
+                @endfor
             </div>
         </div>
 

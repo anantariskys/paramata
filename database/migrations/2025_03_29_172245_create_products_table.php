@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('productname');
             $table->text('description');
             $table->string('picture');
+            $table->foreignId('subcategory_id')->constrained('sub_categories');
             $table->timestamps();
         });
     }

@@ -4,6 +4,6 @@
     <x-about.company.vision />
     <x-about.company.mission />
     <x-about.company.values />
-    <x-home.brands/>
+
     
 </x-root-layout>

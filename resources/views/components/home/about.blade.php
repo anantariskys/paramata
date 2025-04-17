@@ -4,17 +4,10 @@
         <div class="w-full md:w-1/2 space-y-4">
             <h2 class="text-4xl font-bold">Finding A Permanent Solution Is Our Ultimate Goal!</h2>
             <div class="flex flex-col gap-4">
-                <p>PT. Paramata Baraya International is a private founded company which specialize in gas detection,
-                    enviromental monitoring, industrial hygiene and safety.
+                <p>PT. Paramata Baraya International is a private founded company, with specialized in enviromental monitoring, industrial hygiene, safety, and integrated wireless multi-gas monitoring system.
 
                 </p>
-                <p> Founded in 1999 the company has gained trust from many industries, oil and gas company and
-                    goverment institute due to high quality product and services.
-
-                </p>
-                <p> Paramata Baraya International has great concern to the enviromental condition, therefore our
-                    porduct are freindly to nature beside describe as reliable, cost effective and high quality. We
-                    will do our best to provide solutions to the customer’s needs.</p>
+                <p>  Founded in 2000, the company has gained trust from many industries, oil and gas companies, and goverment institutes, due to our high quality products and excellent services. PT. Paramata Baraya International has great concerns to the enviromental condition. Therefore, our products friendly to the nature, besides described as reliable, cost effective, and high quality. </p>
             </div>
             @if ($onHome == true)
                 <button

@@ -1,5 +1,5 @@
 @props(['categories'])
-
+{{-- @dd($categories) --}}
 <nav x-data="{ open: false }" class="bg-white fixed w-full z-50 border-b border-gray-100">
     <div class="container py-4">
         <div class="flex justify-between h-16">
@@ -40,12 +40,6 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                     </svg>
                                 </a>
-                                <a href="/about/our-customers" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center justify-between">
-                                    Our Customers
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </a>
                                 <a href="/about/news" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center justify-between">
                                     News
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -72,20 +66,37 @@
                              style="display: none;">
                             <div class="py-1">
                                 @foreach ($categories as $category)
-                                <a href="/products/category/{{ $category->id }}" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center justify-between">
-                                    {{ $category->name }}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </a>
+                                <div x-data="{ subOpen: false }" class="relative" @mouseleave="subOpen = false">
+                                    <a href="/products/category/{{ $category->id }}" @mouseover="subOpen = true" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center justify-between">
+                                        {{ $category->name }}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </a>
+                                    
+                                    @if($category->subCategories->count() > 0)
+                                    <div x-show="subOpen" 
+                                         x-transition
+                                         class="absolute left-full top-0 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                                         style="display: none;">
+                                        <div class="py-1">
+                                            @foreach($category->subCategories as $subCategory)
+                                            <a href="/products/category/{{ $category->id }}/{{ $subCategory->id }}" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 block">
+                                                {{ $subCategory->name }}
+                                            </a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
                                 @endforeach
                          
                             </div>
                         </div>
                     </div>
                     
-                    <x-nav-link href="/special-offers" :active="request()->is('special-offers')">
-                        {{ __('Special Offers') }}
+                    <x-nav-link href="/services" :active="request()->is('services')">
+                        {{ __('Services') }}
                     </x-nav-link>
                     
                     <x-nav-link href="/contacts" :active="request()->is('contacts')">
@@ -96,7 +107,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
-                        021-7306424
+                        021-38893041
                     </a>
                     
                     <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1  border-transparent text-sm font-medium leading-5 text-gray-500 gap-2 focus:outline-none focus:text-gray-700 transition duration-150 ease-in-out">
@@ -142,9 +153,6 @@
                     <x-responsive-nav-link href="/about" :active="request()->is('about')">
                         {{ __('About') }}
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link href="/about/our-company" :active="request()->is('about/our-company')">
-                        {{ __('Our Company') }}
-                    </x-responsive-nav-link>
                     <x-responsive-nav-link href="/about/our-customers" :active="request()->is('about/our-customers')">
                         {{ __('Our Customers') }}
                     </x-responsive-nav-link>
@@ -170,15 +178,25 @@
                     {{ __('Products') }}
                 </x-responsive-nav-link>
                 @foreach ($categories as $category)
-                    <x-responsive-nav-link href="/products/category/{{ $category->id }}" :active="request()->is('products/category/'.$category->id)">
-                        {{ $category->name }}
+                    <x-responsive-nav-link href="/products/category/{{ $category->id }}" :active="request()->is('products/category/'.$category->id)" class="flex items-center justify-between">
+                        <span>{{ $category->name }}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
                     </x-responsive-nav-link>
-                    @endforeach
+                    <div x-show="open" x-transition class="pl-4 space-y-1 bg-gray-100">
+                        @foreach($category->subcategories as $subcategory)
+                            <x-responsive-nav-link href="/products/category/{{ $category->id }}/{{ $subcategory->id }}" :active="request()->is('products/category/'.$category->id.'/'.$subcategory->id)">
+                                {{ $subcategory->name }}
+                            </x-responsive-nav-link>
+                        @endforeach
+                    </div>
+                @endforeach
                 </div>
             </div>
             
-            <x-responsive-nav-link href="/special-offers" :active="request()->is('special-offers')">
-                {{ __('Special Offers') }}
+            <x-responsive-nav-link href="/services" :active="request()->is('services')">
+                {{ __('Services') }}
             </x-responsive-nav-link>
             
             <x-responsive-nav-link href="/contacts" :active="request()->is('contacts')">
@@ -189,7 +207,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    021-7306424
+                    021-38893041
                 </button>
             </div>
             

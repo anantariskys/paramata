@@ -9,6 +9,7 @@
                     :penulis="$newsblog->author"
                     :image="$newsblog->image ? asset('storage/news_images/' . $newsblog->image) : asset('images/default.png')"
                     :title="$newsblog->title"
+                    :id="$newsblog->id"
                 />
             @endforeach
         @else

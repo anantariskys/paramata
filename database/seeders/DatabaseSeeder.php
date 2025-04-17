@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
       $this->call([
         CategorySeeder::class,
         ProductsSeeder::class,
-        NewsBlogSeeder::class,
+        // NewsBlogSeeder::class,
       ]);
     }
 }

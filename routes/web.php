@@ -34,18 +34,21 @@ Route::get('/about/our-customers', function () {
     return view('about.customers', compact('categories'));
 });
 Route::get('/about/news', [NewsBlogController::class, 'index'])->name('news.index');
+Route::get('/about/news/{id}', [NewsBlogController::class, 'show'])->name('news.show');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/category/{category}', [ProductController::class, 'category'])->name('products.category');
+Route::get('/products/category/{categoryId}/{subCategoryId}', [ProductController::class, 'subCategory'])->name('products.subcategory');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
-Route::get('/special-offers', function () {
+Route::get('/services', function () {
     $categories = Category::all();  
-    return view('special-offers', compact('categories'));
+    return view('services', compact('categories'));
 });
 Route::get('/contacts', function () {
     $categories = Category::all();  
     return view('contacts', compact('categories'));
 });
+
 
 
 
