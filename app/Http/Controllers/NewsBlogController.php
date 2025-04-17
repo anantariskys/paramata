@@ -12,7 +12,7 @@ class NewsBlogController extends Controller
     public function index()
     {
         $newsblogs = NewsBlog::all(); 
-        $categories = Category::all();
+        $categories = Category::with('subCategories')->get();
 
         return view('about.news', compact('newsblogs', 'categories'));
     }
@@ -20,7 +20,9 @@ class NewsBlogController extends Controller
     public function show($id)
     {
         $newsblog = NewsBlog::findOrFail($id);
-        return view('newsblog.show', compact('newsblog'));
+        $categories = Category::with('subCategories')->get();
+        $relatedNews = NewsBlog::where('id', '!=', $id)->get();
+        return view('news.show', compact('newsblog', 'categories', 'relatedNews'));
     }
 
     public function create()

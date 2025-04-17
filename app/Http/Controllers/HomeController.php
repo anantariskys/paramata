@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $products = Products::with('category')->get();
-        $categories = Category::all();
+        $categories = Category::with('subCategories')->get();
         return view('home', compact('products', 'categories'));
     }
     public function chart(Request $request)

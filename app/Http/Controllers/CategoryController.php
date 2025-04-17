@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller {
     public function index() {
-        $categories = Category::all();
+        $categories = Category::with('subCategories')->get();
         return view('categories.index', compact('categories'));
     }
 

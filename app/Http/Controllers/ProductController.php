@@ -12,29 +12,36 @@ class ProductController extends Controller
     public function index()
     {
         $products = Products::with('category')->get();
-        $categories = Category::all();
+        $categories = Category::with('subCategories')->get();
         
         return view('product', compact('products', 'categories'));
     }
     public function category($id)
     {
         $products = Products::with('category')->where('category_id', $id)-> get();
-        $categories = Category::all();
+        $categories = Category::with('subCategories')->get();
         $category = Category::findOrFail($id);
         return view('product.category', compact('products', 'categories', 'category'));
     }
 
+    public function subCategory($categoryId, $subCategoryId)
+    {
+        $products = Products::with('category')->where('category_id', $categoryId)->where('subcategory_id', $subCategoryId)->get();
+        $categories = Category::with('subCategories')->get();
+        $category = Category::findOrFail($categoryId);
+        return view('product.category', compact('products', 'categories', 'category'));
+    }
 
     public function show($id)
     {
         $product = Products::findOrFail($id);
-        $categories = Category::all();
+        $categories = Category::with('subCategories')->get();
         $relatedProducts = Products::where('category_id', $product->category_id)->get();
         return view('product.show', compact('product', 'categories', 'relatedProducts'));
     }
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::with('subCategories')->get();
         return view('products.create', compact('categories'));
     }
 
@@ -69,7 +76,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Products::findOrFail($id);
-        $categories = Category::all();
+        $categories = Category::with('subCategories')->get();
         return view('products.edit', compact('product', 'categories'));
     }
 
