@@ -1,4 +1,5 @@
-<footer class="bg-secondary/15 border-t border-gray-100">
+@props(['categories'])
+<footer  class="bg-secondary/15 border-t border-gray-100">
     <div class="container py-8 md:py-12">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-sm">
             <!-- Logo and Quick Links Section -->
@@ -9,21 +10,19 @@
                     <div>
                         <h3 class="text-base md:text-lg font-extrabold text-primary mb-4">QUICK LINKS</h3>
                         <div class="flex flex-col gap-3 md:gap-4">
-                            <a href="" class="hover:text-primary transition-colors">About</a>
-                            <a href="" class="hover:text-primary transition-colors">Products</a>
-                            <a href="" class="hover:text-primary transition-colors">Services</a>
+                            <a href="/about" class="hover:text-primary transition-colors">About</a>
+                            <a href="/products" class="hover:text-primary transition-colors">Products</a>
+                            <a href="/services" class="hover:text-primary transition-colors">Services</a>
                         </div>
                     </div>
 
                     <!-- Products -->
                     <div>
-                        <h3 class="text-base md:text-lg font-extrabold text-primary mb-4">PRODUCTS</h3>
+                        <h3 class="text-base md:text-lg font-extrabold text-primary mb-4">CATEGORIES</h3>
                         <div class="flex flex-col gap-3 md:gap-4">
-                            <a href="" class="hover:text-primary transition-colors">Gas Detector</a>
-                            <a href="" class="hover:text-primary transition-colors">Gas Detector Software</a>
-                            <a href="" class="hover:text-primary transition-colors">Calibration Gases</a>
-                            <a href="" class="hover:text-primary transition-colors">Safety</a>
-                            <a href="" class="hover:text-primary transition-colors">Analyzer</a>
+                            @foreach ($categories as $category)
+                                <a href="{{ route('products.category', $category->id) }}" class="hover:text-primary transition-colors">{{ $category->name }}</a>
+                            @endforeach
                         </div>
                     </div>
 

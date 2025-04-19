@@ -2,6 +2,6 @@
   <x-home.carousel-hero />
   <x-home.about />
   <x-home.product />
-  <x-home.news />
-  <x-home.brands />
+  <x-home.news :news="$news" />
+  <x-about.customers />
 </x-root-layout>

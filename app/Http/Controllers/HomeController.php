@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\NewsBlog;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class HomeController extends Controller
     {
         $products = Products::with('category')->get();
         $categories = Category::with('subCategories')->get();
-        return view('home', compact('products', 'categories'));
+        $news = NewsBlog::all();
+        return view('home', compact('products', 'categories', 'news'));
     }
     public function chart(Request $request)
     {

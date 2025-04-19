@@ -10,6 +10,7 @@
                 <p>  Founded in 2000, the company has gained trust from many industries, oil and gas companies, and goverment institutes, due to our high quality products and excellent services. PT. Paramata Baraya International has great concerns to the enviromental condition. Therefore, our products friendly to the nature, besides described as reliable, cost effective, and high quality. </p>
             </div>
             @if ($onHome == true)
+                <a href="/about/our-company">
                 <button
                     class="bg-primary text-white px-4 w-fit py-2 rounded-xl flex items-center gap-2 hover:bg-primary/90 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -17,6 +18,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                     </svg>Read More
                 </button>
+                </a>
             @endif
 
         </div>

@@ -8,7 +8,7 @@
         <div class="flex justify-between items-center">
             <h3 class="text-lg font-bold line-clamp-2">{{ $title }}</h3>
             @if (!$penulis)
-                <p class="text-sm text-gray-500">{{ $publishedAt }}</p>
+                <p class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($publishedAt)->format('d M Y') }}</p>
             @endif
         </div>
         @if ($penulis)

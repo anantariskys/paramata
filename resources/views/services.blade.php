@@ -41,7 +41,7 @@
                 </button>
             </div>
             <div class="w-full md:w-1/2">
-                <img src="{{ asset('images/service3.png') }}" alt="Calibration" class="w-full h-full object-cover rounded-lg shadow-lg">
+                <img src="{{ asset('images/service2.png') }}" alt="Calibration" class="w-full h-full object-cover rounded-lg shadow-lg">
             </div>
         </div>
     </section>

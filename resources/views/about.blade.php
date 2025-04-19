@@ -2,5 +2,5 @@
     <x-about.hero />
     <x-home.about :onHome=false />
     <x-about.news />
-    <x-about.customers />
+    <x-home.brands />
 </x-root-layout>
